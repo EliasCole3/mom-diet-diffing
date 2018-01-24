@@ -2,6 +2,8 @@
 // Interstitial Cystitis-IC
 // MCAS (low-histamine) -LH
 
+const fs = require('fs')
+
 const newline = '\r\n'
 
 let fodmap = require('./diets/fodmap.js').data
@@ -40,21 +42,29 @@ let diets = [
 //   console.log(x)
 // })
 
-console.log(diets)
+// console.log(diets)
+
+
+let output = `Veggies (good)` + newline
+output += `----------------------------------------` + newline + newline
 
 
 diets.forEach(diet => {
-  let output = `Veggies (good)`
-  output += diet.name
-  output += diet.data.veggies.good
+  output += diet.name + newline
+  output += `----------` + newline
+  output += diet.data.veggies.good.join(newline)
+  output += newline + newline
 })
 
 
+output += `----------------------------------------` + newline
 
+console.log(output)
 
-
-
-
+fs.writeFile('./reports/veggies_good.txt', output, err => {
+  if(err) console.log(err)
+  console.log('wrote good veggies to disk')
+})
 
 
 
