@@ -52,7 +52,7 @@ output += `----------------------------------------` + newline + newline
 diets.forEach(diet => {
   output += diet.name + newline
   output += `----------` + newline
-  output += diet.data.veggies.good.join(newline)
+  output += diet.data.veggies.good.join(', ')
   output += newline + newline
 })
 
@@ -61,7 +61,12 @@ output += `----------------------------------------` + newline
 
 console.log(output)
 
-fs.writeFile('./reports/veggies_good.txt', output, err => {
+// fs.writeFile('./reports/veggies_good.txt', output, err => {
+//   if(err) console.log(err)
+//   console.log('wrote good veggies to disk')
+// })
+
+fs.writeFile('./reports/veggies_good_horizontal.txt', output, err => {
   if(err) console.log(err)
   console.log('wrote good veggies to disk')
 })
